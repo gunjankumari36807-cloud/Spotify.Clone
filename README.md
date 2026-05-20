@@ -71,4 +71,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 - Spotify for the design inspiration
 - Font Awesome for the icons
-- SoundHelix for the sample audio files 
+- SoundHelix for the sample audio files
+
+<img width="960" height="504" alt="image" src="https://github.com/user-attachments/assets/622ec41e-61a0-442b-805
+  4-f75b1f422cfe" />
