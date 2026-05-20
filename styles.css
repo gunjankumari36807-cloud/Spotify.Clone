@@ -1,0 +1,493 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #121212;
+    color: #fff;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 230px 1fr;
+    grid-template-rows: 1fr 90px;
+    height: 100vh;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    background-color: #000000;
+    padding: 24px;
+    grid-row: 1 / 2;
+    grid-column: 1 / 2;
+}
+
+.logo img {
+    width: 130px;
+    margin-bottom: 30px;
+}
+
+.navigation ul {
+    list-style: none;
+    margin-bottom: 30px;
+}
+
+.navigation ul li {
+    padding: 10px 0;
+}
+
+.navigation ul li a {
+    color: #b3b3b3;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    transition: 0.3s ease;
+}
+
+.navigation ul li a:hover {
+    color: #fff;
+}
+
+.navigation ul li a i {
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+/* Make sidebar buttons look like links */
+.sidebar-btn {
+    background: none;
+    border: none;
+    color: #b3b3b3;
+    font-weight: 500;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+.sidebar-btn:hover {
+    color: #fff;
+}
+
+.nav-btn {
+    background:none;
+    border:none;
+    color:#b3b3b3;
+    cursor:pointer;
+    font-weight:500;
+}
+
+/* like button on playlist items */
+.item { position: relative; }
+.like-btn {
+    position: absolute;
+    right: 12px;
+    top: 8px;
+    background: transparent;
+    border: none;
+    color: #fff;
+    padding: 6px;
+    cursor: pointer;
+    z-index: 5;
+}
+.like-btn .fa-solid { color: #1db954; }
+.item.liked { box-shadow: 0 0 8px #1db95422; }
+
+/* Main Content Styles */
+.main-content {
+    background-color: #121212;
+    padding: 24px;
+    grid-row: 1 / 2;
+    grid-column: 2 / 3;
+    overflow-y: auto;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.prev-next-buttons button {
+    color: #7a7a7a;
+    cursor: pointer;
+    width: 34px;
+    height: 34px;
+    border-radius: 100%;
+    font-size: 18px;
+    border: 0;
+    background-color: #090909;
+    margin-right: 10px;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+}
+
+.navbar ul li {
+    padding: 0 20px;
+    position: relative;
+}
+
+.navbar ul li a {
+    color: #b3b3b3;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.navbar ul li a:hover {
+    color: #fff;
+}
+
+.navbar ul li.divider {
+    color: #424242;
+    font-size: 26px;
+    margin: 0 20px;
+    width: 1px;
+}
+
+.navbar button {
+    background-color: #fff;
+    color: #000;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 14px 30px;
+    border: 0;
+    border-radius: 40px;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+.navbar button:hover {
+    background-color: #f2f2f2;
+}
+
+/* Playlist Styles */
+.spotify-playlists {
+    padding: 20px 40px;
+}
+
+.spotify-playlists h2 {
+    color: #fff;
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 24px;
+}
+
+.item {
+    background: #181818;
+    padding: 16px;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.item:hover {
+    background-color: #252525;
+}
+
+.item img {
+    width: 100%;
+    border-radius: 6px;
+    margin-bottom: 16px;
+}
+
+.item .play {
+    position: relative;
+}
+
+.item .play .fa {
+    position: absolute;
+    right: 10px;
+    top: -60px;
+    padding: 18px;
+    background-color: #1db954;
+    border-radius: 100%;
+    opacity: 0;
+    transition: all ease 0.4s;
+}
+
+.item:hover .play .fa {
+    opacity: 1;
+    transform: translateY(-20px);
+}
+
+.item h4 {
+    color: #fff;
+    font-size: 14px;
+    margin-bottom: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.item p {
+    color: #989898;
+    font-size: 12px;
+    line-height: 20px;
+    font-weight: 600;
+}
+
+.item.active {
+    border: 2px solid #1db954;
+    box-shadow: 0 0 8px #1db95444;
+}
+
+.control-buttons .active {
+    color: #1db954;
+}
+
+.song-info img {
+    background: #222;
+    object-fit: cover;
+}
+
+/* Fallback image style */
+.item img[src*='placeholder'], .song-info img[src*='placeholder'] {
+    background: #333;
+    color: #fff;
+    object-fit: contain;
+}
+
+/* Player Styles */
+.player {
+    background-color: #181818;
+    border-top: 1px solid #282828;
+    padding: 0 20px;
+    grid-row: 2 / 3;
+    grid-column: 1 / 3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.song-info {
+    display: flex;
+    align-items: center;
+    width: 30%;
+}
+
+.song-info img {
+    width: 56px;
+    height: 56px;
+    margin-right: 14px;
+}
+
+.song-info h4 {
+    color: #fff;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.song-info p {
+    color: #b3b3b3;
+    font-size: 12px;
+}
+
+.player-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40%;
+}
+
+.control-buttons {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.control-buttons button {
+    background: none;
+    border: none;
+    color: #b3b3b3;
+    font-size: 16px;
+    margin: 0 10px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.control-buttons button:hover {
+    color: #fff;
+}
+
+.control-buttons .fa-play-circle {
+    font-size: 32px;
+    color: #fff;
+}
+
+.progress-bar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.progress {
+    flex: 1;
+    height: 4px;
+    background-color: #4f4f4f;
+    border-radius: 2px;
+    cursor: pointer;
+    position: relative;
+}
+
+.progress-filled {
+    background-color: #b3b3b3;
+    width: 30%;
+    height: 100%;
+    border-radius: 2px;
+    transition: width 0.1s linear;
+}
+
+.progress:hover .progress-filled {
+    background-color: #1db954;
+}
+
+.current-time, .total-time {
+    color: #b3b3b3;
+    font-size: 12px;
+}
+
+.volume-controls {
+    display: flex;
+    align-items: center;
+    width: 30%;
+    justify-content: flex-end;
+}
+
+.volume-controls button {
+    background: none;
+    border: none;
+    color: #b3b3b3;
+    font-size: 16px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.volume-bar {
+    width: 100px;
+    height: 4px;
+    background-color: #4f4f4f;
+    border-radius: 2px;
+    cursor: pointer;
+    position: relative;
+}
+
+.volume-filled {
+    background-color: #b3b3b3;
+    width: 70%;
+    height: 100%;
+    border-radius: 2px;
+    transition: width 0.1s linear;
+}
+
+.volume-bar:hover .volume-filled {
+    background-color: #1db954;
+}
+
+/* Scrollbar Styles */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #121212;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+}
+
+.modal-content {
+    position: relative;
+    background-color: #282828;
+    margin: 15% auto;
+    padding: 20px;
+    width: 50%;
+    max-width: 500px;
+    border-radius: 8px;
+    color: white;
+}
+
+.modal-content h2 {
+    margin-bottom: 20px;
+    color: white;
+}
+
+.modal-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.modal-content input {
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #3e3e3e;
+    color: white;
+}
+
+.modal-content input::placeholder {
+    color: #b3b3b3;
+}
+
+.modal-content button {
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.modal-content button[type="submit"] {
+    background-color: #1db954;
+    color: white;
+}
+
+.modal-content button[type="button"] {
+    background-color: transparent;
+    color: #b3b3b3;
+    border: 1px solid #b3b3b3;
+}
+
+.modal-content button:hover {
+    transform: scale(1.05);
+} 

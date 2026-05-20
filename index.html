@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Clone</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo">
+                <img src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_RGB_White.png" alt="Spotify">
+            </div>
+            <div class="navigation">
+                <ul>
+                    <li>
+                        <button class="sidebar-btn" data-action="home">
+                            <i class="fa fa-home"></i>
+                            <span>Home</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button class="sidebar-btn" data-action="search">
+                            <i class="fa fa-search"></i>
+                            <span>Search</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button class="sidebar-btn" data-action="library">
+                            <i class="fa fa-book"></i>
+                            <span>Your Library</span>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+            <div class="navigation">
+                <ul>
+                    <li>
+                        <button class="sidebar-btn" data-action="create">
+                            <i class="fa fa-plus-square"></i>
+                            <span>Create Playlist</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button class="sidebar-btn" data-action="liked">
+                            <i class="fa fa-heart"></i>
+                            <span>Liked Songs</span>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="topbar">
+                <div class="prev-next-buttons">
+                    <button type="button" class="fa fa-chevron-left"></button>
+                    <button type="button" class="fa fa-chevron-right"></button>
+                </div>
+                <div class="navbar">
+                    <ul>
+                        <li>
+                            <button class="nav-btn" id="premiumBtn">Premium</button>
+                        </li>
+                        <li>
+                            <button class="nav-btn" id="supportBtn">Support</button>
+                        </li>
+                        <li>
+                            <button class="nav-btn" id="downloadBtn">Download</button>
+                        </li>
+                        <li class="divider">|</li>
+                        <li>
+                            <button class="nav-btn" id="signupBtn">Sign Up</button>
+                        </li>
+                    </ul>
+                    <button type="button" id="loginBtn">Log In</button>
+                </div>
+            </div>
+
+            <div class="spotify-playlists">
+                <h2>Spotify Playlists</h2>
+                <div style="margin-bottom:12px;">
+                    <button id="createPlaylistBtn" type="button">Create Playlist</button>
+                </div>
+                <div class="list" id="playlistContainer"></div>
+            </div>
+        </div>
+
+        <!-- Player -->
+        <div class="player">
+            <div class="song-info">
+                <img src="https://i.scdn.co/image/ab67616d00004851e8b066f70c206551210d902b" alt="">
+                <div>
+                    <h4>Song Title</h4>
+                    <p>Artist Name</p>
+                </div>
+            </div>
+            <div class="player-controls">
+                <div class="control-buttons">
+                    <button class="fa fa-random"></button>
+                    <button class="fa fa-step-backward"></button>
+                    <button class="fa fa-play-circle"></button>
+                    <button class="fa fa-step-forward"></button>
+                    <button class="fa fa-redo"></button>
+                </div>
+                <div class="progress-bar">
+                    <span class="current-time">0:00</span>
+                    <div class="progress">
+                        <div class="progress-filled"></div>
+                    </div>
+                    <span class="total-time">3:45</span>
+                </div>
+            </div>
+            <div class="volume-controls">
+                <button class="fa fa-volume-up"></button>
+                <div class="volume-bar">
+                    <div class="volume-filled"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Create Playlist Modal -->
+    <div id="createPlaylistModal" class="modal">
+        <div class="modal-content">
+            <h2>Create Playlist</h2>
+            <form id="createPlaylistForm">
+                <input type="text" name="title" placeholder="Title" required>
+                <input type="text" name="artist" placeholder="Artist" required>
+                <input type="url" name="cover" placeholder="Cover image URL" required>
+                <input type="url" name="audio" placeholder="Audio file URL (mp3)" required>
+                <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:10px;">
+                    <button type="button" onclick="closeModal()">Cancel</button>
+                    <button type="submit">Create</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <h2>Log In</h2>
+            <form id="loginForm">
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:10px;">
+                    <button type="button" onclick="document.getElementById('loginModal').style.display='none'">Cancel</button>
+                    <button type="submit">Log In</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <h2>Sign Up</h2>
+            <form id="signupForm">
+                <input type="text" name="name" placeholder="Name" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:10px;">
+                    <button type="button" onclick="document.getElementById('signupModal').style.display='none'">Cancel</button>
+                    <button type="submit">Sign Up</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Search overlay (hidden until used) -->
+    <div id="searchBar" style="display:none;padding:12px 24px;background:#121212;position:sticky;top:0;z-index:50;">
+        <input id="searchInput" type="search" placeholder="Search songs or artists..." style="width:60%;padding:8px;border-radius:6px;border:1px solid #333;background:#222;color:#fff;">
+        <button id="searchCloseBtn" style="margin-left:8px;padding:8px 12px;border-radius:6px;">Close</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
